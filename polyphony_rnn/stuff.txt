@@ -1,29 +1,30 @@
-performance_rnn_generate \
-  --config=${CONFIG} \
-  --run_dir=/tmp/performance_rnn/logdir/run1 \
-  --bundle_file=/tmp/performance_rnn.mag \
-  --save_generator_bundle
+polyphony_rnn_create_dataset \
+--input=/Note_sequences/1107_piano.tfrecord \
+--output_dir=/polyphony_rnn/piano_split \
+--eval_ratio=0.20
 
 
-performance_rnn_train \
---config=${CONFIG} \
---run_dir=performance_rnn/logdir/run1 \
---sequence_example_file=performance_rnn/sequence_examples/eval_performances.tfrecord \
---eval
+polyphony_rnn_train \
+--run_dir=polyphony_rnn/logdir/1000_steps_training \
+--sequence_example_file=polyphony_rnn/piano_split/training_poly_tracks.tfrecord \
+--hparams="batch_size=64,rnn_layer_sizes=[128,128]" \
+--num_training_steps=1000 \
+
+
 
 polyphony_rnn_generate \
---run_dir=polyphony_rnn/logdir/run1 \
---hparams="batch_size=128,rnn_layer_sizes=[64,64,64]" \
+--run_dir=polyphony_rnn/logdir/1000_steps_training \
+--hparams="batch_size=64,rnn_layer_sizes=[64,64]" \
 --bundle_file=polyphony_rnn/polyphony_rnn.mag \
 --save_generator_bundle
 
-BUNDLE_PATH= github/magenta/polyphony_rnn/polyphony_rnn_128.mag
 
 polyphony_rnn_generate \
---bundle_file=github/magenta/polyphony_rnn/polyphony_rnn_128.mag \
---output_dir=github/magenta/polyphony_rnn/generated \
---num_outputs=10 \
+--bundle_file= github/magenta/polyphony_rnn/64_1000_polyphony_rnn.mag \
+--output_dir=github/magenta/polyphony_rnn/generated_64 \
+--num_outputs=5 \
 --num_steps=128 \
---primer_midi=MIDI_archives/antfraw_sample.mid \
+--primer_midi=Midi_archives/noco.mid
 --condition_on_primer=false \
 --inject_primer_during_generation=true
+--qpm= #vitesse
