@@ -28,3 +28,17 @@ polyphony_rnn_generate \
 --condition_on_primer=false \
 --inject_primer_during_generation=true
 --qpm= #vitesse
+
+
+polyphony_rnn_create_dataset \
+--input=piano_split/eval_poly_tracks.tfrecord \
+--output_dir=/polyphony_rnn/piano_split/validation \
+--eval_ratio=0.50
+
+
+polyphony_rnn_train \
+--run_dir=polyphony_rnn/logdir/run1 \
+--sequence_example_file=polyphony_rnn/piano_split/eval_poly_tracks.tfrecord \
+--hparams="batch_size=64,rnn_layer_sizes=[128,128]" \
+--num_training_steps=8000 \
+--eval
