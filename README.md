@@ -4,6 +4,11 @@
 [![Build Status](https://travis-ci.org/tensorflow/magenta.svg?branch=master)](https://travis-ci.org/tensorflow/magenta)
  [![PyPI version](https://badge.fury.io/py/magenta.svg)](https://badge.fury.io/py/magenta)
 
+
+Durant mon stage d'assistant ingénieur de fin de deuxième année, je travaillais à l'Insight Centre for Data Analytics à Dublin, centre de recherche en informatique lié à l'université irlandaise Dublin City University. 
+Mon travail de recherche consistait à prendre en main **Magenta** et trouver un modèle utilisable pour générer de la musique de film. J'ai pu présenter mon projet lors de l'événement *Dublin Maker* fin Juillet, où je permettais aux spectateurs de créer de la musique à partir de quelques notes jouées sur un piano.
+
+
 **Magenta** is a research project exploring the role of machine learning
 in the process of creating art and music.  Primarily this
 involves developing new deep learning and reinforcement learning
